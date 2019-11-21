@@ -1,6 +1,6 @@
 import threading, time, random, queue
 
-class Prod:
+class Producer:
 	def __init__(self):
 		self.product = ['nail','fork','hammer', 'cabbage']
 		self.next = 0
@@ -16,7 +16,7 @@ class Prod:
 				print("Added: {}".format(f))
 				self.next += random.random()
 
-class Comnsumer:
+class Consumer:
 	def __init__(self):
 		self.next = 0
 
@@ -33,8 +33,8 @@ class Comnsumer:
 
 if __name__ == '__main__':
 	q = queue.Queue(10)
-	p = Prod()
-	c = Comnsumer()
+	p = Producer()
+	c = Consumer()
 	pt = threading.Thread(target=p.run, args = ())
 	ct = threading.Thread(target=c.run, args = ())
 	pt.start()
